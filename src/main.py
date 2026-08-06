@@ -17,7 +17,7 @@ def main():
             service = prompt_get()
             entry = get_entry(service, key)
             if entry:
-                print(f"Service: {service}\n Password: {password}")
+                print(f"Service: {service}\n Password: {entry}")
             else:
                 print(f"No entry found for {service}")
         

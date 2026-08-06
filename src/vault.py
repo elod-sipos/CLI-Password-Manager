@@ -10,16 +10,23 @@ def load_vault():
     if not os.path.exists(VAULT_FILE):
         return {}
     
-    with open(VAULT_FILE, "r") as file:
-        try:
-            return json.load(file)
-        except json.JSONDecodeError:
-            return {}
+    try:
+        with open(VAULT_FILE, "r") as file:
+            try:
+                return json.load(file)
+            except json.JSONDecodeError:
+                return {}
+    except OSError as e:
+        print(f"File unreadable: {e}")
+        return {}
 
 # Updates dictionary
 def save_vault(data):
-    with open(VAULT_FILE, "w") as file:
-        json.dump(data, file, indent=4)
+    try:
+        with open(VAULT_FILE, "w") as file:
+            json.dump(data, file, indent=4)
+    except OSError as e:
+        print(f"File could not save: {e}")
 
 # Adds new entry
 def add_entry(service, password, key):
