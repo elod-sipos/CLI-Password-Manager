@@ -5,31 +5,32 @@ from vault import add_entry, get_entry, get_or_create_salt
 
 
 def main():
-    master_password = getpass.getpass("Enter master password: ")
-    salt = get_or_create_salt()
-    key = derive_key(master_password, salt)
+    try: 
+        master_password = getpass.getpass("Enter master password: ")
+        salt = get_or_create_salt()
+        key = derive_key(master_password, salt)
 
-    while True:
-        choice = home_menu()
+        while True:
+            choice = home_menu()
 
-        if choice.lower() == "g":
-            service = prompt_get()
-            entry = get_entry(service, key)
-            if entry:
-                print(f"Service: {service}\n Password: {entry}")
+            if choice.lower() == "g":
+                service = prompt_get()
+                entry = get_entry(service, key)
+                if entry:
+                    print(f"Service: {service}\n Password: {entry}")
+                else:
+                    print(f"No entry found for {service}")
+            
+            elif choice.lower() == "c":
+                service, password = prompt_add()
+                add_entry(service, password, key)
+                print(f"Saved password for {service}")
+
+            elif choice.lower() == "q":
+                break
+            
             else:
-                print(f"No entry found for {service}")
-        
-        elif choice.lower() == "c":
-            service, password = prompt_add()
-            add_entry(service, password, key)
-            print(f"Saved password for {service}")
-
-        elif choice.lower() == "q":
-            break
-        
-        else:
-            print("Invalid option")
+                print("Invalid option")
         
     except (KeyboardInterrupt, EOFError):
         print("Exiting..")
