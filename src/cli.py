@@ -1,5 +1,5 @@
 import getpass
-from generator import passwordGen
+from generator import password_gen
 
 def home_menu():
     print("[G]et, [C]reate, [Q]uit")
@@ -7,16 +7,21 @@ def home_menu():
 
 def prompt_add():
     service = input("Enter service name: ")
-    pass_opt = input("Generate password? (y/n)")
 
-    if pass_opt.lower() == "y":
-        gen = passwordGen()
-        password = gen.password
-        return service, password
+    while True:
+        pass_opt = input("Generate password? (y/n)")
 
-    elif pass_opt.lower() == "n":
-        password = getpass.getpass("Enter password: ")
-        return service, password
+        if pass_opt.lower() == "y":
+            gen = password_gen()
+            password = gen.password
+            return service, password
+
+        elif pass_opt.lower() == "n":
+            password = getpass.getpass("Enter password: ")
+            return service, password
+        
+        else:
+            print("Invalid option")
 
 def prompt_get():
     return input("Enter service name: ")

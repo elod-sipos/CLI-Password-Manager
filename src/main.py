@@ -2,8 +2,7 @@ import getpass
 from cli import home_menu, prompt_add, prompt_get
 from crypto import derive_key, generate_salt
 from vault import add_entry, get_entry, get_or_create_salt
-import os
-import json
+
 
 def main():
     master_password = getpass.getpass("Enter master password: ")
@@ -31,6 +30,9 @@ def main():
         
         else:
             print("Invalid option")
+        
+    except (KeyboardInterrupt, EOFError):
+        print("Exiting..")
 
 if __name__ == "__main__":
     main()

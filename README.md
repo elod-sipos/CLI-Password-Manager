@@ -3,7 +3,7 @@
 ## Installation & Usage
 ```bash
 git clone https://github.com/elod-sipos/CLI-Password-Manager.git
-cd password-manager
+cd CLI-Password-Manager
 pip install -r requirements.txt
 ```
 

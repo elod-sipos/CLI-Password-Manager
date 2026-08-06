@@ -1,7 +1,7 @@
 import secrets
 import string
 
-class passwordGen:
+class password_gen:
     def __init__(self):
         s1 = list(string.ascii_lowercase)
         s2 = list(string.ascii_uppercase)
