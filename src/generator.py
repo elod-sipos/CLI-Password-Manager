@@ -31,6 +31,6 @@ class passwordGen:
         random.shuffle(result)
 
         self.password = "".join(result)
-        print(f"Password generated: {self.password}")
+        print(f"Password generated")
 
 
